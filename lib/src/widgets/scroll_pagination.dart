@@ -21,6 +21,7 @@ class ScrollPagination<T> extends StatefulWidget {
   final Widget? noMoreDataIndicator;
   final Widget? emptyDataIndicator;
   final double renderThreshold;
+  final Widget? prototypeItem;
   final Widget Function(BuildContext context, int index, T item) itemBuilder;
 
   const ScrollPagination({
@@ -38,6 +39,7 @@ class ScrollPagination<T> extends StatefulWidget {
     this.nextPageErrorIndicator,
     this.noMoreDataIndicator,
     this.emptyDataIndicator,
+    this.prototypeItem,
     this.renderThreshold = 100.0,
     required this.itemBuilder,
   }) : assert(!(primary == false && controller == null),
@@ -113,7 +115,8 @@ class ScrollPaginationState<T> extends State<ScrollPagination<T>> {
           primary: widget.primary,
           shrinkWrap: widget.shrinkWrap,
           physics: widget.physics,
-          itemCount: state.items.length + (state.hasMoreData ? 1 : 1),
+          itemCount: state.items.length + 1,
+          prototypeItem: widget.prototypeItem,
           itemBuilder: (context, index) {
             if (index < state.items.length) {
               return widget.itemBuilder(context, index, state.items[index]);
