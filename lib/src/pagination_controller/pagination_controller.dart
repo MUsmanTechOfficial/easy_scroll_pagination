@@ -127,7 +127,7 @@ class PaginationController<T> extends ChangeNotifier {
   }
 
   /// Refreshes all data, resetting the pagination.
-  Future<void> refreshAll() async {
+  Future<void> reloadData() async {
     _updateState(
       isFirstPageLoading: true,
       hasMoreData: true,
